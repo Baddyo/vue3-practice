@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <input v-model='a' type="number">
+        <input v-model='b' type="number">
+        <p>sumComputed: {{sumComputed}}</p>
+        <p>sumFunc: {{sumFunc()}}</p>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    a: 1,
+                    b: 2
+                };
+            },
+            computed: {
+                sumComputed() {
+                    return this.a + this.b;
+                }
+            },
+            methods:{
+                sumFunc(){
+                    return this.a + this.b;
+                }
+            }
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

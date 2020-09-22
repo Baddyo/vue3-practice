@@ -8,9 +8,18 @@
 </head>
 
 <body>
-    <script src="https://unpkg.com/vue@next"></script>
+    <div id="box"></div>
+    <script src="../vue.global.js"></script>
     <script>
-        
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            }
+        });
+
+        app.mount('#box');
     </script>
 </body>
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <p>灵活：{{num}}</p>
+        <p v-once>固定：{{num}}</p>
+        <button @click='add'>ADD</button>
+        <p>纯文本：<span>{{raw}}</span></p>
+        <p>富文本：<span v-html='raw'>Will be replaced</span></p>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    num: 0,
+                    raw: `<span style="color:orangered">Orangered</span>`
+                };
+            },
+            methods: {
+                add() {
+                    this.num++;
+                }
+            }
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

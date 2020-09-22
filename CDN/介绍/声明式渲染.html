@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <span :title='title'>Number: {{num}}</span>
+        <span title='title'>Text</span>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const options = {
+            data() {
+                return {
+                    num: 0,
+                    title:`Now is ${new Date().toLocaleString()}`
+                };
+            }
+        };
+
+        Vue.createApp(options).mount('#box');
+    </script>
+</body>
+
+</html>
