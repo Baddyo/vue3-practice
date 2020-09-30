@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            },
+            props: {
+                // null 和 undefined 会通过任何类型的检查
+                a: Number,
+                b: [String, Number], // 可能有多个类型
+                c: {
+                    type: Number,
+                    required: true // 必填
+                },
+                d: {
+                    type: String,
+                    default: 'a' // 默认值
+                },
+                e: {
+                    type: Object,
+                    // 对象或数组类型的 prop，其默认值必须是由一个工厂函数返回的
+                    default: function () {
+                        return {
+                            key: 'value'
+                        }
+                    }
+                },
+                // 自定义验证
+                f: {
+                    validator: function (val) {
+                        return [1, 2, 3].indexOf(val) >= 0;
+                    }
+                }
+            }
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

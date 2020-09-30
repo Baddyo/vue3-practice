@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    val: 'A',
+                    pv: '1'
+                };
+            },
+            template: `<ipt v-model="pv"></ipt><p>{{pv}}</p><br><ipt :modelValue="val" @update:modelValue="val=$event"></ipt><p>{{val}}</p>`
+        });
+        app.component('ipt', {
+            template: `<input :value='modelValue' @input='$emit("update:modelValue", $event.target.value)' />`,
+            data() {
+                return {
+
+                }
+            },
+            props: ['modelValue']
+        });
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

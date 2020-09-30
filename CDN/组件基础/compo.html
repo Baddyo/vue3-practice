@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <compo></compo>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            }
+        });
+
+        // 全局注册的组件，在其他组件里直接用
+        app.component('subcompo', {
+            data() {
+                return {
+                    name: 'sub compo'
+                }
+            },
+            template: `<h2>{{name}} of {{father}}</h2>`,
+            props:['father']
+        });
+
+        app.component('compo', {
+            data() {
+                return {
+                    name: 'BADD'
+                }
+            },
+            template: `<h1>{{name}}</h1><subcompo :father="name"></subcompo>`
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

@@ -9,27 +9,25 @@
 
 <body>
     <div id="box">
-        <p>灵活：{{num}}</p>
-        <p v-once>固定：{{num}}</p>
-        <button @click='add'>ADD</button>
-        <p>纯文本：<span>{{raw}}</span></p>
-        <p>富文本：<span v-html='raw'>Will be replaced</span></p>
+
     </div>
     <script src="../vue.global.js"></script>
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    num: 0,
-                    raw: `<span style="color:orangered">Orangered</span>`
+
                 };
             },
-            methods: {
-                add() {
-                    this.num++;
-                }
-            }
+            template: `<compo>插槽文本</compo>`
         });
+
+        app.component('compo', {
+            data() {
+                return {}
+            },
+            template: `<h1>默认文本</h1><slot></slot>`
+        })
 
         app.mount('#box');
     </script>
