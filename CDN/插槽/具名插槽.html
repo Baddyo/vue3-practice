@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <compo>
+            <template v-slot:green>GREEN</template>
+            <template v-slot:red>RED</template>
+            <template v-slot:blue>BLUE</template>
+        </compo>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            }
+        });
+
+        app.component('compo', {
+            template: `
+                <h1>插槽</h1>
+                <slot>后背内容</slot>
+                <div style="color: red"><slot name="red">红</slot></div>
+                <div style="color: green"><slot name="green">绿</slot></div>
+                <div style="color: blue"><slot name="blue">蓝</slot></div>
+            `
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

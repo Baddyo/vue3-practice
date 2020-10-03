@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <compo></compo>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const mixin = {
+            data() {
+                return {
+                    name: 'MixinBadd',
+                    age: 27
+                }
+            },
+            created() {
+                this.hello();
+            },
+            methods: {
+                hello() {
+                    console.log(`HELLO, ${this.name}, ${this.age}`);
+                }
+            }
+        };
+        const app = Vue.createApp({
+            created(){console.log('From App')},
+            data() {
+                return {
+                    name: 'AppBadd'
+                };
+            },
+            mixins: [mixin]
+        });
+        app.mixin({
+            created(){
+                console.log('Global Mixin');
+            }
+        });
+        app.component('compo', {
+            template: `<h2>COMPO</h2>`
+        });
+
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,10 @@
 </head>
 
 <body>
-    <div id="box"></div>
+    <div id="box">
+        <compo></compo>
+        <compo><span style="color: orchid;">自定义插槽</span></compo>
+    </div>
     <script src="../vue.global.js"></script>
     <script>
         const app = Vue.createApp({
@@ -20,7 +23,10 @@
         });
 
         app.component('compo', {
-            template: ``
+            template: `
+                <h1>插槽</h1>
+                <slot>后背内容</slot>
+            `
         });
 
         app.mount('#box');

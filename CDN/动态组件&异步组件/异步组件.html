@@ -19,9 +19,13 @@
             }
         });
 
-        app.component('compo', {
-            template: ``
-        });
+        app.component('async-compo', Vue.defineAsyncComponent(()=>{
+            return new Promise((resolve, reject)=>{
+                resolve({
+                    template:`<div>Async Compo Here</div>`
+                });
+            });
+        }));
 
         app.mount('#box');
     </script>

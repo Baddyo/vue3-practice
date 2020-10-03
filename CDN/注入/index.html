@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <p>{{val}}</p>
+        <button @click="val++">ADD</button>
+        <compo></compo>
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    val: 1
+                };
+            },
+            provide() {
+                return {
+                    deep: 'badd',
+                    deepVal: Vue.computed(() => this.val)
+                }
+            }
+        });
+
+        app.component('subcompo1', {
+            template: `<h2>{{deep}}</h2><subcompo2></subcompo2>`,
+            inject: ['deep']
+        });
+
+        app.component('subcompo2', {
+            template: `<h3>{{deep}}</h3>{{deepVal}}`,
+            inject: ['deep', 'deepVal']
+        });
+
+        app.component('compo', {
+            template: `<subcompo1></subcompo1>`
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

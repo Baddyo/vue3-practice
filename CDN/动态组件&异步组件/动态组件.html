@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tab-bar {
+            border: 1px solid gray;
+            display: inline-block;
+        }
+
+        #tab-bar span {
+            display: inline-block;
+            padding: 5px 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="tab-bar" @click="swt">
+            <span class="home">Home</span>
+            <span class="contact">Contact</span>
+            <span class="about">About</span>
+        </div>
+        <keep-alive>
+            <component :is='compoName'></component>
+        </keep-alive>
+
+    </div>
+    <script src="../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    compoName: 'home'
+                };
+            },
+            methods: {
+                
+                swt(e) {
+                    this.compoName = e.target.className;
+                }
+            }
+        });
+
+        app.component('home', {
+            data() {
+                return {
+                    val: 0
+                }
+            },
+            template: `
+        <h1>HOME</h1>
+        <div>{{val}}</div>
+        <button @click="val++">ADD</button>
+    `
+        });
+
+        app.component('contact', {
+            data() {
+                return {
+                    val: 0
+                }
+            },
+            template: `
+        <h1>CONTACT</h1>
+        <div>{{val}}</div>
+        <button @click="val++">ADD</button>
+    `
+        });
+
+        app.component('about', {
+            data() {
+                return {
+                    val: 0
+                }
+            },
+            template: `
+        <h1>ABOUT</h1>
+        <div>{{val}}</div>
+        <button @click="val++">ADD</button>
+    `
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>
