@@ -42,10 +42,17 @@
                     user
                 } = Vue.toRefs(props);
 
-                let {list, getList, category} = makeList(user);
-                let {sex, filterList} = makeFilter(list);
+                let {
+                    list,
+                    getList,
+                    category
+                } = makeList(user);
+                let {
+                    sex,
+                    filterList
+                } = makeFilter(list);
 
-                
+
                 return {
                     list,
                     category,
