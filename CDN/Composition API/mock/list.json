@@ -1,0 +1,75 @@
+{
+    "American": [{
+            "name": "Alice",
+            "age": 21,
+            "sex": "female"
+        },
+        {
+            "name": "Bill",
+            "age": 29,
+            "sex": "male"
+        },
+        {
+            "name": "Charle",
+            "age": 21,
+            "sex": "male"
+        },
+        {
+            "name": "Dasiy",
+            "age": 12,
+            "sex": "female"
+        },
+        {
+            "name": "Emilia",
+            "age": 31,
+            "sex": "female"
+        }
+    ],
+    "Chinese": [{
+            "name": "周杰伦",
+            "age": 11,
+            "sex": "male"
+        },
+        {
+            "name": "王力宏",
+            "age": 21,
+            "sex": "male"
+        },
+        {
+            "name": "贾玲",
+            "age": 31,
+            "sex": "female"
+        },
+        {
+            "name": "沈腾",
+            "age": 41,
+            "sex": "male"
+        }
+    ],
+    "Animal": [{
+            "name": "Dog",
+            "age": 21,
+            "sex": "female"
+        },
+        {
+            "name": "Cat",
+            "age": 29,
+            "sex": "male"
+        },
+        {
+            "name": "Bird",
+            "age": 21,
+            "sex": "male"
+        },
+        {
+            "name": "Bear",
+            "age": 12,
+            "sex": "female"
+        },
+        {
+            "name": "Dragon",
+            "age": 21,
+            "sex": "female"
+        }
+    ]
+}

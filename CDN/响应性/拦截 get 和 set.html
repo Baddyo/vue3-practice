@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        let obj = {
+            name: 'Badd',
+            age: 27
+        };
+        let prx = new Proxy(obj, {
+            get(target, key, receiver) {
+                track(target, key);
+                return Reflect.get(...arguments)
+            },
+            set(target, key, value, receiver) {
+                trigger(target, key);
+                return Reflect.set(...arguments);
+            }
+        });
+        prx.age;
+    </script>
+</body>
+
+</html>

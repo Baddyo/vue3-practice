@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script src="../vue.global.js"></script>
+    <script>
+        // let state1 = Vue.reactive({
+        //     count: 0
+        // });
+        // Vue.watch(() => {
+        //     return state1.count;
+        // }, (newVal, oldVal) => {
+        //     console.log('new', newVal);
+        //     console.log('old', oldVal);
+        // });
+        // state1.count++;
+
+        // let state2 = Vue.ref(0);
+        // Vue.watch(state2, (newVal, oldVal) => {
+        //     console.log('new', newVal);
+        //     console.log('old', oldVal);
+        // });
+        // state2.value++;
+
+        let num1 = Vue.ref(0);
+        let num2 = Vue.ref(0);
+        let num3 = Vue.ref(0);
+        Vue.watch([num1, num2, num3], (newArr, oldArr) => {
+            console.log('new', newArr);
+            console.log('old', oldArr);
+        });
+        num3.value++;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <compo></compo>
+    </div>
+    <script src="../../../vue.global.js"></script>
+    <script src="list.js"></script>
+    <script src="filter.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            }
+        });
+
+        app.component('compo', {
+            template: `
+                FILTER: <select name="SEX" v-model="sex">
+                    <option value="">all</option>  
+                    <option value="male">MALE</option>  
+                    <option value="female">FEMALE</option>    
+                </select>
+                <br>
+                <input v-model="category" />
+                <button @click="getList(category)">SEARCH</button>
+                <div v-if="filterList.length" v-for="item in filterList">
+                    {{item.name}} {{item.age}} {{item.sex}}
+                </div>
+            `,
+            setup(props) {
+                let {
+                    user
+                } = Vue.toRefs(props);
+
+                let {list, getList, category} = makeList(user);
+                let {sex, filterList} = makeFilter(list);
+
+                
+                return {
+                    list,
+                    category,
+                    sex,
+                    filterList,
+                    getList,
+                }
+            },
+            props: {
+                user: {
+                    type: String,
+                    default: 'Badd'
+                }
+            },
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>

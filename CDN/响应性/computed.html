@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script src="../vue.global.js"></script>
+    <script>
+        // let num = 0;
+        // let cum = Vue.computed(() => num);
+        // num++;
+        // console.log(cum.value); // 1
+
+        let a = 0;
+        let ca = Vue.computed({
+            get() {
+                return a * 2;
+            },
+            set(val) {
+                a = val / 2;
+            }
+        });
+        a = 1;
+        console.log(ca.value);
+        ca.value = 8;
+        console.log(a);
+    </script>
+</body>
+
+</html>

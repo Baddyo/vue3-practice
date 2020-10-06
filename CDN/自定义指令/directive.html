@@ -36,13 +36,20 @@
 
         app.component('compo', {
             template: `
-                <input v-fks />
+                <input v-kalr:[argument]="val" />
             `,
+            data(){
+                return {val: 'red', argument: 'color'}
+            },
             // 在组件中局部定义指令
             directives: {
-                fks: {
-                    mounted(el) {
+                kalr: {
+                    mounted(el, binding) {
                         el.focus();
+                        let key = binding.arg || 'color'; // binding.arg 是指令的参数
+                        let val = binding.value; // 指令的值
+                        console.log(val)
+                        el.style[key] = val;
                     }
                 }
             }

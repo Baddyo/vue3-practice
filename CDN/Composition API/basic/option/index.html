@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <compo></compo>
+    </div>
+    <script src="../../../vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+
+                };
+            }
+        });
+
+        app.component('compo', {
+            template: `
+                FILTER: <select name="SEX" v-model="sex">
+                    <option value="">all</option>  
+                    <option value="male">MALE</option>  
+                    <option value="female">FEMALE</option>    
+                </select>
+                <br>
+                <input v-model="category" />
+                <button @click="getList(category)">SEARCH</button>
+                <div v-if="filterList.length" v-for="item in filterList">
+                    {{item.name}} {{item.age}} {{item.sex}}
+                </div>
+            `,
+            data() {
+                return {
+                    list: [],
+                    sex: '',
+                    category: 'Chinese'
+                }
+            },
+            props: {
+                user: {
+                    type: String,
+                    default: 'Badd'
+                }
+            },
+            computed: {
+                filterList() {
+                    return this.list.filter(x => {
+                        if (this.sex) {
+                            return x.sex === this.sex;
+                        } else {
+                            return x;
+                        }
+                    });
+                }
+            },
+            watch: {
+                user(val, oldVal) {
+                    this.getList('val');
+                }
+            },
+            methods: {
+                getList(category) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('get', '../../mock/list.json');
+                    xhr.send(null);
+                    xhr.onload = () => {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            let data = JSON.parse(xhr.responseText);
+                            if (data[this.category]) {
+                                this.list = data[this.category]
+                            } else {
+                                this.list = [];
+                            }
+                        }
+                    }
+                }
+            },
+            mounted() {
+                this.getList(this.category);
+            }
+        });
+
+        app.mount('#box');
+    </script>
+</body>
+
+</html>
