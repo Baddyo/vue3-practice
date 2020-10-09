@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{a}}</p>
+        <p>{{obj.b}}</p>
+        <p>{{obj.e}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            data() {
+                return {
+                    a: 1,
+                    obj: {
+
+                    }
+                }
+            }
+        }).$mount('#app');
+        // vm.obj.b = 1;
+        // Vue.set(vm.obj, 'b', 1);
+
+        // Object.assign(vm.obj, {
+        //     c: 1,
+        //     d: 2,
+        //     e: 3
+        // });
+        vm.obj = Object.assign({}, vm.obj, {
+            c: 1,
+            d: 2,
+            e: 3
+        });
+        vm.obj.e = 4;
+    </script>
+</body>
+
+</html>
